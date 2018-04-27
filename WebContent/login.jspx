@@ -1,0 +1,21 @@
+<form method="POST" id="loginForm" action="Login">
+	<div class="modal fade" id="loginModal" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">x</button>
+					<h4 class="modal-title">Log In</h4>
+				</div>
+
+				<div class="modal-body">
+					<div class="form-group"><label for="login_username">User Name:</label><input type="text" class="form-control" name="username" id="login_username"/></div>
+					<div class="form-group"><label for="login_password">Password:</label><input type="password" class="form-control" name="password" id="login_password"/></div>
+				</div>
+				<div class="modal-footer">
+					<a href="register.jspx" style="margin-right:20px;" >Register Now</a>
+					<button type="submit" action="submit" class="btn btn-info">Sign In</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

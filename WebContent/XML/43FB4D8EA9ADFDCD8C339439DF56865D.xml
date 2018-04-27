@@ -1,0 +1,9 @@
+<?xml-stylesheet type="text/xsl" href="MKBook.xsl"?>
+<MKBook productId="b001">
+    <bookBean>
+        <bid>b001</bid>
+        <title>Little Prince</title>
+        <price>20</price>
+        <category>Fiction</category>
+    </bookBean>
+</MKBook>

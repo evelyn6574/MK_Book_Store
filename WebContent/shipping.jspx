@@ -1,0 +1,86 @@
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt"
+	class="container" style="margin-top:5%;">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+<div>
+<div class="container">
+<h3><p>Shipping Information</p></h3>
+<table>
+		<c:set var="shippingAdrs" value="${adrsAccessor.retrieveShippingAddr(user.getUsername())}"></c:set>
+
+	<tr>
+	<td><p style="color:red;">Set Shipping Address as Billing Address?</p></td>
+	<td><label><input type="checkbox" id="yes" name="yes" style="margin: 0px 10px 10px 20px;" onchange="sameadrs()" />Yes</label></td>
+	 </tr>
+</table> 
+<!-- table end -->
+
+<p>Fillout the following form for a <span style="color:red">NEW</span> shipping address</p>
+<br/>
+<div class="form-inline">
+    <div class="form-group">   
+      <label for="sfname">First Name:</label>
+      <a id="pf"><input type="text" class="form-control inputTextField" id="sfname" name="sfname" placeholder="Joe"
+      					style="margin: 10px 10px 10px 10px;"/></a>
+      
+    </div>
+    <div class="form-group">
+      <label for="slname">Last Name:</label>
+      <a id="pl"><input type="text" class="form-control inputTextField" id="slname" name="slname" placeholder="Doe"
+      					style="margin: 10px 10px 10px 10px;"/></a>
+    </div>
+    <div class="form-group">
+      <label for="slname">Phone Number:</label>
+      <a id="pp"><input type="text" class="form-control inputTextField" id="sphone" name="sphone" placeholder="10 digits"
+      						style="margin: 10px 10px 10px 10px;" onblur="checkSPhone()"/></a>
+    </div>
+  </div>
+</div>
+<!-- select country and state -->
+<div class="container">
+	<div class="form-inline">
+		<label  for="scountry">Country:</label>
+		<div class="form-group" >
+		<div class="col-sm-6 col-md-4">
+		<p id="pc"/><select id="scountry" name="scountry" class="form-control" onchange="sgetState()">
+			<option value="0">Select country</option> 
+			<option value= "Canada" >Canada</option> 
+			<option value= "USA" >USA</option>
+		</select>
+		</div>
+		</div>
+		
+		<label  for="sstate">Province/States:</label>
+		<div class="form-group">
+		<div class="col-sm-6 col-md-4">
+		
+		<p id="ps"/><select id="sstate" name="sstate" class="form-control"> 
+			<option value="0">Select state</option>
+		</select> 
+		</div>
+		</div>
+		
+		<div class="form-group">
+      		<label for="szip">ZIP CODE:</label>
+     		 <a id="pz"><input type="text" class="form-control inputTextField" id="szip" name="szip" placeholder="6 digits"
+      		style="margin: 10px 10px 10px 10px;" onblur="checkZip()"></input></a>
+    	</div>	
+	</div>
+</div>
+<!-- detail address include the apartment number, street number and city -->
+<div class="container">
+  <div>
+    <div class="form-group">
+      <label for="adrs">Address:</label>
+      <p id="pa"/><textarea class="form-control inputTextField" rows="2" id="sadrs" name="sadrs" onclick="this.innerHTML=''">Please enter address</textarea>
+    </div>
+  </div>
+</div>
+</div>
+</div>

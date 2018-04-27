@@ -1,0 +1,22 @@
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" class="container">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#account_info">Account
+				Information</a></li>
+		<li><a data-toggle="tab" href="#order_history">Order History</a></li>
+
+	</ul>
+
+	<div class="tab-content">
+		<jsp:include page="/editAccountInfo.jspx" />
+		<jsp:include page="/orderHistory.jspx" />
+	</div>
+
+</div>

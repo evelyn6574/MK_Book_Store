@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<title>Shopping Cart</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<!-- Optional theme -->
+<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+
+<!-- cart.css -->
+<link rel="stylesheet" href="css/cart.css" />
+</head>
+<body style="background-image:url(image/background.jpg); background-repeat:no-repeat; background-size:cover;">
+
+	<jsp:include page="/navbar.jspx">
+		<!-- include the navigation bar -->
+		<jsp:param name="cart_size" value="${cart.getSize()}" />
+	</jsp:include>
+	<jsp:include page="/header.jspx" /><!-- include the header -->
+		<div class="container">
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<!--Book Bean  -->
+						<th>BID</th>
+						<th>Book Title</th>
+						<th>Unit Price</th>
+						<th>Category</th>
+
+						<!-- Shopping Cart -->
+						<th>Quantity</th>
+						<th>Subtotal</th>
+						<th>Operation</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- loop cart item -->
+					<c:forEach items="${cart.getBooks()}" var="element">
+						<tr id="${element.key}">
+							<td>${element.key}</td>
+							<td>${cart.getTitle(element.key)}</td>
+							<td><f:formatNumber type="currency">${cart.getUnitPrice(element.key)}</f:formatNumber></td>
+							<td>${cart.getCategory(element.key)}</td>
+							<td><input id="${element.key}quantity"
+								name="${element.key}quantity" type="number" min="1" max="100"
+								style="float: right" value="${element.value}"
+								onchange='updateQuantity("${element.key}")' /></td>
+							<!-- ${element.value.quantity} -->
+							<td id="${element.key}subtotal"><f:formatNumber
+									type="currency">${cart.getSubtotal(element.key)}</f:formatNumber></td>
+							<td><FORM action="OrderProcessCtrl"><button type="submit" action='submit' name='delete' label='submit'
+									value="${element.key}">Delete</button></FORM></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+		<hr />
+
+		<div class="container">
+			<table class="table-responsive" style="float: right;">
+				<tr>
+					<td id="total"><b>Total: <f:formatNumber type="currency">${cart.getPrice()}</f:formatNumber></b></td>
+					<br />
+					<td><a href="main.jspx"><button type="button"
+								class="btn btn-default" style="margin: 10px 10px 10px 10px;">
+								Keep Shopping</button></a> <c:choose>
+							<c:when test="${not empty sessionScope['user']}">
+								<button type="button" class="btn btn-warning btn-lg"
+									action='submit' name='submit'
+									onclick="location.href='payment.jspx'">
+									<b>CHECK OUT</b>
+								</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" class="btn btn-warning btn-lg"
+									data-toggle="modal" data-target="#loginModal" action='submit'
+									name='submit'>
+									<b>CHECK OUT</b>
+								</button>
+							</c:otherwise>
+						</c:choose></td>
+				</tr>
+			</table>
+		</div>
+
+
+		<jsp:include page="/login.jspx" />
+		<jsp:include page="/registerModal.jspx" />
+		<jsp:include page="/detailModal.jspx" />
+		<!-- Javascript files -->
+		<script src="js/jquery.min.js">
+			;
+		</script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="js/bootstrap.min.js">
+			;
+		</script>
+		<script>
+			function deleteBook(bid) {
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					// Use jQuery to perform remove action on element "bid".
+					$("#" + bid).remove();
+
+				}
+				xhttp.open("GET", "OrderProcessCtrl?delete=" + bid, true);
+				xhttp.send();
+			}
+			function updateQuantity(bid) {
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (xhttp.readyState == 4) {
+						$("#total").html(xhttp.getResponseHeader('total'));
+						$("#cart_icon").text(xhttp.getResponseHeader('size'));
+						$("#" + bid + "subtotal").html(
+								xhttp.getResponseHeader('subtotal'));
+					}
+
+				}
+				xhttp.open("GET", "OrderProcessCtrl?bid=" + bid
+						+ "&amp;quantity=" + $("#" + bid + "quantity").val(),
+						true);
+				xhttp.send();
+			}
+		</script>
+		<script src="js/jquery.min.js">
+			;
+		</script>
+		<script src="js/login.js">
+			;
+		</script>
+</body>
+	</html>
+</jsp:root>

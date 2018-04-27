@@ -1,0 +1,71 @@
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" class="container">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+
+	<!-- loop through categories -->
+	<c:forEach items="${categories}" var="category">
+		<!-- BookBean objects of the category -->
+		<c:set var="bookList"
+			value="${bookAccessor.retrieveCategory(category).values().toArray()}" />
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<form>
+					${category}
+					<button type="submit" style="float: right;" class="btn btn-link" id="viewByCategory" name="viewByCategory"
+									value="${category}" formaction="Start">View
+						All</button>
+				</form>
+			</div>
+			<div class="panel-body">
+
+				<!-- category section -->
+				<div class="row">
+					<c:forEach var="i" begin="1" end="3">
+						<div class="col-sm-6 col-md-4">
+							<!-- book section -->
+							<div class="thumbnail">
+								<img id="${bookList[i].bid}toModal" type="button"
+									src="image/book_cover/${bookList[i].bid}.jpg"
+									onclick="updateModal('${bookList[i].bid}', '${bookList[i].title}', '${bookList[i].price}')"
+									alt="book001" data-toggle="modal" data-target="#myModal" />
+								<div class="caption">
+									<!-- book caption -->
+									<h3 id="${bookList[i].bid}toModal" data-toggle="modal"
+										onclick="updateModal('${bookList[i].bid}', '${bookList[i].title}', '${bookList[i].price}')"
+										data-target="#myModal">${bookList[i].title}</h3>
+									<form action="OrderProcessCtrl" method="GET">
+										<p>
+											Price:
+											<f:formatNumber type="currency">${bookList[i].price}</f:formatNumber>
+										<div>
+											Quantity:<input type="number" id="quantity" name="quantity"
+												value="1" min="1" max="100" style="float: right" />
+										</div>
+										</p>
+										<p>
+											<button action="submit" name="addToCart"
+												value="${bookList[i].bid}" class="btn btn-primary"
+												style="margin-right: 5px;">Add To Cart</button>
+
+											<button id="${bookList[i].bid}toModal" type="button"
+												class="btn btn-default"
+												onclick="updataModal('${bookList[i].bid}', '${bookList[i].title}', '${bookList[i].price}')"
+												data-toggle="modal" data-target="#myModal">Detail</button>
+										</p>
+									</form>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+	</c:forEach>
+</div>
+

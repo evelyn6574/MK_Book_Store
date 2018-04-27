@@ -1,0 +1,84 @@
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" class="container">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+
+	<!-- assument the scope is the session scope and the name for the addressBean is ['aB']  -->
+	<c:if test="true">
+		<!-- if ['aB'] exist means that this user has a default address-->
+		<!-- <p style="color:red"> this is true </p> -->
+		<c:set var="billingAdrs" value="${adrsAccessor.retrieveBillingAddr(user.getUsername())}"></c:set>
+		<div>
+			<h4 style="color: red;">
+				<p>Billing Address</p> 
+			</h4>
+
+			<br />
+			<div>
+				<div class="form-inline">
+					<div class="form-group">
+						<label for="phone">Phone Number:</label> <input type="text"
+							class="form-control inputTextField" id="phone" name="phone"
+							value="${billingAdrs.getPhone()}" placeholder="10 digits"
+							style="margin: 10px 10px 10px 10px;" onblur="checkPhone()"
+							onclick="if (this.value=='${billingAdrs.getPhone()}'){this.value=''};" />
+					</div>
+
+					<label for="country">Country:</label>
+					<div class="form-group">
+						<div class="col-sm-6 col-md-4">
+							<!-- !!!!!!!!!!!!!!!!!!!!!!for select the country, attribute onclick may or maynot work!!!!!!!!!!!!!!!!!!! -->
+							<select id="country" name="country" class="form-control" onchange="getState()">
+								<c:if test="${not empty billingAdrs.getCountry() }">
+								<option value="${billingAdrs.getCountry()}">${billingAdrs.getCountry()}</option>
+								</c:if>
+								<option value="0">Select country</option>
+								<option value="Canada">Canada</option>
+								<option value="USA">USA</option>
+							</select>
+						</div>
+					</div>
+
+					<label for="state">Province/States:</label>
+					<div class="form-group">
+						<div class="col-sm-6 col-md-4">
+							<select id="state" name="state" class="form-control"
+								value="${billingAdrs.getProvince()}">
+								<c:if test="${not empty billingAdrs.getProvince()}">
+								<option value="${billingAdrs.getProvince()}">${billingAdrs.getProvince()}</option>
+								</c:if>
+								<option value="0">Select state</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="zip">ZIP CODE:</label> <input type="text"
+							class="form-control inputTextField" id="zip" name="zip" placeholder="6 digits"
+							value="${billingAdrs.getZip()}" style="margin: 10px 10px 10px 10px;"
+							onblur="checkZip()"
+							onclick="if (this.value=='${billingAdrs.getZip()}'){this.value=''};"></input>
+					</div>
+
+
+				</div>
+			</div>
+			<!-- detail address include the apartment number, street number and city -->
+			<div>
+				<div role="form">
+					<div class="form-group">
+						<label for="adrs">Address:</label>
+						<textarea class="form-control inputTextField" rows="2" id="adrs" name="adrs"
+							onclick="this.innerHTML='';if (this.value=='${billingAdrs.getStreet()}'){this.value=''};">${billingAdrs.getStreet()}</textarea>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</c:if>
+</div>

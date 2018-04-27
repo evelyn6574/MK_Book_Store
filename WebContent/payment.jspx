@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<title>Payment</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<!-- Optional theme -->
+<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+
+</head>
+<body style="background-image:url(image/background.jpg); background-repeat:no-repeat; background-size:cover;">
+	<jsp:include page="/navbar.jspx" />
+	<jsp:include page="/header.jspx" />
+	<form action="Payment" method="POST" name="form1">
+		<div class="container">
+			<table class="table">
+				<tr>
+					<td><h2>
+							<b>Your Account Information</b>
+						</h2></td>
+					<td style="width: 100px;"><a href="Cart.jspx"><button
+								type="button" class="btn btn-warning"
+								style="margin: 15px 10px 10px 10px;">Go Back to
+								Shopping Cart</button></a></td>
+				</tr>
+			</table>
+		</div>
+		<!-- billing address -->
+		<jsp:include page="/creditcard.jspx" />
+		<br />
+		<jsp:include page="/billing.jspx" />
+		<div class="container">
+			<hr />
+		</div>
+		<!-- shipping address -->
+		<jsp:include page="/shipping.jspx" />
+
+		<br />
+		<div class="container">
+			<table style="float: right;">
+				<tr>
+					<td><button type="submit" class="btn btn-warning btn-lg"
+							action='submit' name='submit' onclick="return validateInput()">
+							<b>Submit</b>
+						</button></td>
+				</tr>
+			</table>
+		</div>
+		<br />
+		<br />
+	</form>
+	
+	<jsp:include page="/footer.jspx" />
+	<!-- Javascript files -->
+	<script src="js/jquery.min.js">
+		;
+	</script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="js/bootstrap.min.js">
+		;
+	</script>
+	<script src="js/p1.js">
+		;
+	</script>
+	<script src="js/login.js">
+		;
+	</script>
+	
+	<jsp:include page="/login.jspx" />
+		<jsp:include page="/registerModal.jspx" />
+		<jsp:include page="/detailModal.jspx" />
+</body>
+	</html>
+</jsp:root>

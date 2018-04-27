@@ -1,0 +1,30 @@
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" class="container">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	
+	
+	<table class="table">
+				<tr>
+					<td>BID</td>
+					<td>Book Title</td>
+					<td>Price</td>
+					<td>Category</td>
+					<td>Quantity</td>
+				</tr>
+				<c:forEach items="${report}" var="element">
+					<tr>
+						<td>${bookAccessor.retrieveBook(element.key).getBid()}</td>
+						<td>${bookAccessor.retrieveBook(element.key).getTitle()}</td>
+						<td>${bookAccessor.retrieveBook(element.key).getPrice()}</td>
+						<td>${bookAccessor.retrieveBook(element.key).getCategory()}</td>
+						<td>${element.value}</td>
+					</tr>
+				</c:forEach>
+			</table>
+</div>

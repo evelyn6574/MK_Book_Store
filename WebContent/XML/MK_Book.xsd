@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <xsd:element name="MKBook" type="MKBookType"/>
+
+  <xsd:complexType name="MKBookType">
+  <xsd:sequence>
+    <xsd:element name="bookBean" minOccurs="0" maxOccurs="unbounded" type="bookBeanType"/>
+  </xsd:sequence>
+	<xsd:attribute name="productId" type="xsd:string"/>
+  </xsd:complexType>
+  <xsd:complexType name="bookBeanType">
+    <xsd:sequence>
+		<xsd:element name="bid" type="xsd:string"/>
+		<xsd:element name="title" type="xsd:string"/>
+		<xsd:element name="price" type="xsd:positiveInteger"/>
+		<xsd:element name="category" type="xsd:string"/>
+	</xsd:sequence>
+  </xsd:complexType>
+
+</xsd:schema>

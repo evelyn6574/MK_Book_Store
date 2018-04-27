@@ -1,0 +1,82 @@
+<div>
+	<div class="container">
+		<h3>
+			<p>Shipping Information</p>
+		</h3>
+		<table>
+			<tr>
+				<td><p style="color: red;">Set Shipping Address as Billing
+						Address?</p></td>
+				<td><label><input type="checkbox" id="yes" name="yes"
+						style="margin: 0px 10px 10px 20px;" onchange="sameadrs()" />Yes</label></td>
+			</tr>
+		</table>
+		<!-- table end -->
+
+		<p>
+			Fillout the following form for a <span style="color: red">NEW</span>
+			shipping address
+		</p>
+		<br />
+		<div class="form-inline" role="form">
+			<div class="form-group ">
+				<label for="sfname">First Name:</label> <input type="text"
+					class="form-control inputTextField" id="sfname" name="sfname" placeholder="Joe"
+					style="margin: 10px 10px 10px 10px;" />
+
+			</div>
+			<div class="form-group">
+				<label for="slname">Last Name:</label><input
+					type="text" class="form-control inputTextField" id="slname" name="slname"
+					placeholder="Doe" style="margin: 10px 10px 10px 10px;" />
+			</div>
+			<div class="form-group">
+				<label for="slname">Phone Number:</label> <input type="text"
+					class="form-control inputTextField" id="sphone" name="sphone"
+					placeholder="10 digits" style="margin: 10px 10px 10px 10px;"
+					onblur="checkSPhone()" />
+			</div>
+		</div>
+	</div>
+	<!-- select country and state -->
+	<div class="container">
+		<div class="form-inline">
+			<label for="scountry">Country:</label>
+			<div class="form-group">
+				<div class="col-sm-6 col-md-4">
+					<select id="scountry" name="scountry" class="form-control" style="color:238,238,238;"
+						onchange="sgetState()">
+						<option value="0">Select country</option>
+						<option value="Canada">Canada</option>
+						<option value="USA">USA</option>
+					</select>
+				</div>
+			</div>
+
+			<label for="sstate">Province/States:</label>
+			<div class="form-group">
+				<div class="col-sm-6 col-md-4">
+					<select id="sstate" name="sstate" class="form-control">
+						<option value="0">Select state</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="szip">ZIP CODE:</label> <input type="text"
+					class="form-control inputTextField" id="szip" name="szip" placeholder="6 digits"
+					style="margin: 10px 10px 10px 10px;" onblur="checkZip()"></input>
+			</div>
+		</div>
+	</div>
+	<!-- detail address include the apartment number, street number and city -->
+	<div class="container">
+		<div>
+			<div class="form-group">
+				<label for="sadrs">Address:</label>
+				<textarea class="form-control inputTextField" rows="2" id="sadrs" name="sadrs"
+					onclick="this.innerHTML=''">Please enter address</textarea>
+			</div>
+		</div>
+	</div>
+</div>

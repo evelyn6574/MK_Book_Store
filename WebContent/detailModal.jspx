@@ -1,0 +1,84 @@
+
+<div class="container">
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">x</button>
+					<h3 id="dm_title" class="modal-title">Book Title</h3>
+					<h3 id="dm_price">
+						<small>$4.00</small>
+					</h3>
+				</div>
+				<div class="modal-body">
+					<div class="media">
+						<div class="media-left">
+							<img id="dm_img" class="media-object"
+								src="image/book_cover/b001.jpg" width="200" height="200" />
+						</div>
+						<div class="media-body">
+
+							<table>
+								<form id="review_form" action="DetailModalCtrl" method="GET">
+									<tr>
+										<td>
+											<h4 class="media-heading">Write A Review</h4>
+											
+											<div class="rating">
+												<input type="radio" id="star5" name="rating" value="5" /><label
+													for="star5">5 stars</label> <input type="radio" id="star4"
+													name="rating" value="4" /><label for="star4">4
+													stars</label> <input type="radio" id="star3" name="rating"
+													value="3" /><label for="star3">3 stars</label> <input
+													type="radio" id="star2" name="rating" value="2" /><label
+													for="star2">2 stars</label> <input type="radio" id="star1"
+													name="rating" value="1" /><label for="star1">1
+													star</label>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td><textarea name="customerreview" rows="3" cols="50"
+												id="customerreview" onclick="this.innerHTML=''">please write a review</textarea></td>
+										<td><button onclick="return submitReview('${user}')"
+												id="submit_bid" name="submit_bid" type="submit"
+												class="btn btn-primary">Submit</button></td>
+									</tr>
+								<tr>
+									<td><hr /></td>
+								</tr>
+								<tr>
+									<td>
+										<h4 class="media-heading">Customer Review</h4>
+										<div id="reviewList"
+											class="list-group modal-body-scrollreview">
+											<!-- Reviews are generated from js function updateModal(bid, title, price) -->
+										</div>
+									</td>
+								</tr>
+								</form>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<form action="OrderProcessCtrl" method="GET">
+						<div style="float: left">
+							Quantity:<input type="number" id="quantity"
+								name="quantity" value="1" min="1" max="100" />
+						</div>
+						<button type="submit" name="addToCart" id="addToCart" 
+							class="btn btn-primary">Add To Cart</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

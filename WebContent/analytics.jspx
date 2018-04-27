@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=ISO-8859-1"
+		pageEncoding="ISO-8859-1" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<title>Analytics Page</title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<!-- Optional theme -->
+<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+
+
+</head>
+<body
+	style="background-image: url(image/background.jpg); background-repeat: no-repeat; background-size: cover;">
+	<div class="container">
+		<div class="jumbotron"
+			style="background-image: url(image/headerImg.png); background-repeat: no-repeat; background-size: cover; height: 270px;">
+			<h1 style="color: white;">MK BOOKSTORE</h1>
+			<div class="btn-group" role="group" aria-label="...">
+				<!-- category in header -->
+			</div>
+		</div>
+		<p style="color: DimGray">
+		<h1>The Book Sold Each Month</h1>
+		</p>
+		<jsp:include page="/report.jspx" />
+		
+		
+		<p style="color: DimGray">
+		<h1>The Most Popluar Book</h1>
+		</p>
+		<jsp:include page="/mostPopular.jspx" />
+		
+		<p style="color: DimGray">
+		<h1>User Buying Statistics</h1>
+		</p>
+		<jsp:include page="/statistics.jspx" />
+		<BR />
+		<BR />
+
+	</div>
+	<script src="js/p1.js">
+		;
+	</script>
+	<!-- Javascript files -->
+	<script src="js/jquery.min.js">
+		;
+	</script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="js/bootstrap.min.js">
+		;
+	</script>
+	<script src="js/login.js">
+		;
+	</script>
+</body>
+	</html>
+</jsp:root>

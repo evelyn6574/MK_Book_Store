@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta charset="utf-8" />
+<title>Searhed Result</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<!-- Optional theme -->
+<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+<link href="css/rating.css" rel="stylesheet" type="text/css" />
+
+<!-- main.css -->
+<link rel="stylesheet" href="css/main.css" />
+<!-- js for confirm the password -->
+<script src="js/registercfmpwd.js">
+	;
+</script>
+<style type="text/css">
+#stars>span {
+	display: inline-block;
+	font-size: 30px;
+	color: #2784a7;
+}
+
+#stars:hover>span:before {
+	content: '\2605';
+	position: absolute;
+}
+
+#stars>span:hover ~ span:before {
+	content: '';
+}
+
+.modal-body-scrollreview {
+	max-height: calc(100vh - 450px);
+	overflow-y: auto;
+}
+</style>
+
+
+<script>
+	$("#input-id").rating({
+		min : 1,
+		max : 10,
+		step : 2,
+		size : 'lg'
+	});
+</script>
+
+<!-- js for choose the states and provence -->
+<script src="js/p1.js">
+	;
+</script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery.min.js">
+	;
+</script>
+<script type="text/javascript">
+	function ShowHideDiv(chkPassword) {
+		var dvPassword = document.getElementById("dvPassword");
+		dvPassword.style.display = chkPassword.checked ? "block" : "none";
+	}
+</script>
+</head>
+
+<body style="background-image:url(image/background.jpg); background-repeat:no-repeat; background-size:cover;">
+	<jsp:include page="/navbar.jspx">
+		<jsp:param name="cart_size" value="${cart.getSize()}" />
+	</jsp:include>
+	<jsp:include page="/header.jspx" />
+	<jsp:include page="/searchedBooksDisplay.jspx" />
+	<!-- <jsp:include page="/profile.jspx" />-->
+	<div class="container" style="margin-bottom: 5%;">
+		<HR />
+	</div>
+
+	<jsp:include page="/login.jspx" />
+	<jsp:include page="/registerModal.jspx" />
+	<jsp:include page="/detailModal.jspx" />
+
+	<script>
+		$("#input-id").rating({
+			min : 1,
+			max : 10,
+			step : 2,
+			size : 'lg'
+		});
+	</script>
+
+	<script src="js/jquery.js">
+		;
+	</script>
+	<!-- Javascript files -->
+	<script src="js/jquery.min.js">
+		;
+	</script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="js/bootstrap.min.js">
+		;
+	</script>
+	<!-- For login.jspx -->
+	<script src="js/login.js">
+		;
+	</script>
+
+</body>
+	</html>
+</jsp:root>
